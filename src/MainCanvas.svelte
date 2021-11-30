@@ -12,7 +12,7 @@
 		const ctx = canvas.getContext("2d")!;
 		const clearCanvas = canvasUtil.clearAllFn(ctx);
 
-		const tile_size = 32; // in px
+		const tile_size = 512 / map.H; // in px
 
 		const render: FrameRequestCallback = (time: number) => {
 			clearCanvas();
@@ -32,22 +32,30 @@
 					tile_size,
 					tile_size
 				);
+
+				ctx.font = `8px consolas`;
+				ctx.strokeText(
+					index.toString(),
+					tile_size * (index % map.H),
+					tile_size * Math.floor(index / map.H) + 8
+				);
 			}
 
-			requestAnimationFrame(render);
+			// requestAnimationFrame(render);
 		};
 
 		let frame = requestAnimationFrame(render);
 	});
 </script>
 
-<canvas id="main_canvas" bind:this={canvas}>
+<canvas id="main_canvas" bind:this={canvas} width="512" height="512">
 	Need canvas support to play Pharaoh!
 </canvas>
 
 <style>
 	#main_canvas {
-		width: 512px;
-		height: 512px;
+		/* width: 512px;
+		height: 512px; */
+		border: 2px solid red;
 	}
 </style>
