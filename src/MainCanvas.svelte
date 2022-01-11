@@ -3,9 +3,6 @@
 	import * as canvasUtil from "./canvas-util";
 	import { tileImgParser, TILE_DATA } from "./tiles";
 	import { selected } from "./selection";
-	import map_img from "./tiles.png";
-
-	console.log(map_img);
 
 	import type { ParsedTile } from "./tiles";
 	import type { LevelMap } from "./map";
@@ -15,7 +12,6 @@
 
 	let canvas: HTMLCanvasElement;
 	let tilemap: HTMLImageElement;
-	let tilemap_n: HTMLImageElement;
 
 	const tile_size = 512 / map.H; // in px
 
@@ -93,8 +89,7 @@
 	Need canvas support to play Pharaoh!
 </canvas>
 
-<img bind:this={tilemap} src={map_img} alt="" style="display: none" />
-<img bind:this={tilemap_n} alt="" style="display: none" />
+<img bind:this={tilemap} src="./tiles.png" alt="" style="display: none" />
 
 <!-- tile types get their 'img' property from this rendering -->
 {#each tile_types as tile_type}
