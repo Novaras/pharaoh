@@ -7,10 +7,12 @@ import { TILE_DATA } from "./tiles";
 // 	length: 16 * 16
 // }, () => null));
 
-const my_map = new LevelMap(16, Array.from({
-	length: 16 * 16
+const map_dim = 12;
+
+const my_map = new LevelMap(map_dim, Array.from({
+	length: Math.pow(map_dim, 2)
 }, (_, i) => {
-	return Object.values(TILE_DATA)[Math.round(Math.random())];
+	return Object.values(TILE_DATA)[Math.random() < 0.1 ? 0 : 1];
 }));
 
 const app = new App({

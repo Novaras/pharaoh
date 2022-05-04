@@ -6,7 +6,7 @@ export type Tile = {
 	display: [number, number]
 };
 
-const tiles: Record<string, Tile> = {
+const tiles: { [index: string]: Tile } = {
 	WATER: {
 		id: 0,
 		label: `Water`,
