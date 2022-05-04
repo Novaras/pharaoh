@@ -23,6 +23,16 @@
 	let tile_types: ParsedTile[] = [];
 
 	onMount(async () => {
+		const tilemapLoaded = () => {
+			tilemap.removeEventListener(`load`, tilemapLoaded);
+		};
+		await new Promise<void>((res) =>
+			tilemap.addEventListener(`load`, () => {
+				tilemapLoaded();
+				res();
+			})
+		);
+
 		console.log(tile_types);
 
 		const parseTile = tileImgParser(tilemap.src);
@@ -44,8 +54,8 @@
 					tile_types.find((tt) => tt.id === tile.id)?.img!,
 					tile_size * (index % map.H),
 					tile_size * Math.floor(index / map.H),
-					32,
-					32
+					tile_size,
+					tile_size
 				);
 			}
 
