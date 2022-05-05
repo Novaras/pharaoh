@@ -12,7 +12,15 @@
 <div>
 	<ul>
 		{#each BUILDING_DATA as building}
-			<li on:click={() => selectBuilding(building)}>{building.label}</li>
+			<li>
+				<button
+					type="button"
+					class="btn"
+					on:click={() => selectBuilding(building)}
+				>
+					{building.label}
+				</button>
+			</li>
 		{/each}
 	</ul>
 </div>
