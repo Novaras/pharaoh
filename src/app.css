@@ -2,3 +2,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.btn {
+	@apply bg-yellow-200 text-black rounded-sm border border-yellow-500 hover:bg-yellow-400 hover:border-yellow-200 hover:cursor-pointer px-3 py-1;
+}
