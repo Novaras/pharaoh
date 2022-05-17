@@ -11,9 +11,7 @@ const map_dim = 12;
 
 const my_map = new LevelMap(map_dim, Array.from({
 	length: Math.pow(map_dim, 2)
-}, (_, i) => {
-	return Object.values(TILE_DATA)[Math.random() < 0.1 ? 0 : 1];
-}));
+}, () => Object.values(TILE_DATA)[Math.random() < 0.1 ? 0 : 1]));
 
 const app = new App({
 	target: document.body,
