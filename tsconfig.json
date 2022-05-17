@@ -11,6 +11,9 @@
   "compilerOptions": {
     "sourceMap": true,
     "strict": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "types": [
+      "svelte"
+    ]
   }
 }
