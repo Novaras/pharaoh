@@ -33,12 +33,12 @@
 			})
 		);
 
-		console.log(tile_types);
-
 		const parseTile = tileImgParser(tilemap.src);
 		tile_types = await Promise.all(
 			Object.values(TILE_DATA).map((t) => parseTile(t))
 		);
+
+		console.log(tile_types);
 
 		const ctx = canvas.getContext("2d")!;
 		const clearCanvas = canvasUtil.clearAllFn(ctx);
@@ -47,8 +47,6 @@
 			clearCanvas();
 
 			// map draw loop
-			// for each tile of map tiles, draw the tile's image which is stored in an <img> el
-			// which is referenced by the `img` prop of the tiles (if it exists yet)
 			for (const [index, tile] of map.tiles.entries()) {
 				ctx.drawImage(
 					tile_types.find((tt) => tt.id === tile.id)?.img!,
@@ -66,25 +64,22 @@
 	});
 
 	const handleCanvasClick = (ev: MouseEvent) => {
-		console.log(ev);
-		console.log(ev.clientY);
+		// console.log(ev);
+		// console.log(ev.clientY);
 
 		const rect = canvas.getBoundingClientRect();
 		const x = Math.floor((ev.clientX - rect.left) / tile_size);
 		const y = Math.floor((ev.clientY - rect.top) / tile_size);
-		const tile = map.tiles[Math.floor(x + map.H * y)];
+		const origin = Math.floor(x + map.H * y);
+		const tile = map.tiles[origin];
 
-		console.log(x, y);
-		console.log(Math.floor(x + map.H * y));
-		console.log(tile);
-		console.log(cur_selection);
+		// console.log(x, y);
+		console.log(origin);
+		// console.log(tile);
+		// console.log(cur_selection);
 
-		// we have a selection and the target is not water
-		if (cur_selection !== undefined && tile.id !== 0) {
-			console.log(
-				`place ${cur_selection.label} at ${Math.floor(x + map.H * y)}`
-			);
-			map.tiles[Math.floor(x + map.H * y)] = cur_selection.tile;
+		if (cur_selection != null) {
+			map.placeBuilding(cur_selection, origin);
 		}
 	};
 </script>
